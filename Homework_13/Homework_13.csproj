@@ -17,7 +17,6 @@
       <Folder Include="Infrastructure\Common" />
       <Folder Include="Infrastructure\Convertors" />
       <Folder Include="Infrastructure\Resources" />
-      <Folder Include="Models" />
       <Folder Include="Views\DataTemplates" />
       <Folder Include="Views\Styles" />
     </ItemGroup>
