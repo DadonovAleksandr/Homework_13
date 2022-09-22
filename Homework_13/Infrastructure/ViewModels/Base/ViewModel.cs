@@ -4,7 +4,7 @@ using NLog;
 
 namespace Homework_13.Infrastructure.ViewModels.Base;
 
-public class BaseViewModel : INotifyPropertyChanged
+internal class BaseViewModel : INotifyPropertyChanged
 {
     protected static Logger logger = LogManager.GetCurrentClassLogger();
     public event PropertyChangedEventHandler? PropertyChanged;
