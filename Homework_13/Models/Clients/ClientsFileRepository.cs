@@ -109,56 +109,61 @@ internal class ClientsFileRepository : IClientsRepository, IEnumerable<Client>
     /// <param name="firstName">Имя</param>
     /// <param name="lastName">Фамилия</param>
     /// <param name="middleName">Отчество</param>
-    public void InsertClient(PhoneNumber phoneNumber, PassportData passportData, 
+    public Client? InsertClient(PhoneNumber phoneNumber, PassportData passportData, 
         string firstName, string lastName, string middleName = "")
     {
         var client = new Client(NextId(), phoneNumber, passportData, firstName, lastName, middleName);
-        if(_clients is null) return;
+        if(_clients is null) return null;
         _clients.Add(client);   
         Logger.Debug($"Добавление клиента: ID={client.Id}, Имя={client.FirstName}, Фамилия={client.LastName}, Отчество={client.MiddleName}, " +
                      $"Номер телефона={client.PhoneNumber}, Пасспортные данные={client.PassportData}");
         Save();
+        return client;
     }
     
     /// <summary>
     /// Удаление клиента
     /// </summary>
-    /// <param name="id">ИД клиента</param>
-    public void DeleteClient(int id)
+    /// <param name="client">Клиент</param>
+    public bool DeleteClient(Client client)
     {
         if(Clients is null) ClientsIsNull();
-        if(Clients.Any(c=>c.Id == id))
+        if(Clients.Any(c=>c.Id == client.Id))
         {
-            Clients.Remove(Clients.First(c => c.Id == id));    
-            Logger.Debug($"Удаление клиента с ID =  {id}");
+            Clients.Remove(Clients.First(c => c.Id == client.Id));    
+            Logger.Debug($"Удаление клиента с ID =  {client.Id}");
             Save();
-            return;
+            return true;
         }
         
-        Logger.Warn($"Удаление клиента с ID =  {id} не возможно. Заданный ID не найден");
+        Logger.Error($"Удаление клиента с ID =  {client.Id} не возможно. Заданный ID не найден");
+        return false;
     }
     
     /// <summary>
     /// Обновление данных о клиенте
     /// </summary>
     /// <param name="client">Клиент</param>
-    public void UpdateClient(Client client)
+    public bool UpdateClient(Client client)
     {
         if (Clients is null)
         {
             Logger.Error($"Репозиторий клиентов null");
-            return;
+            return false;
         }
             
         if (Clients.All(c => c.Id != client.Id))
         {
-            Logger.Error($"Клиент c ID={client.Id}, Имя={client.FirstName}, Фамилия={client.LastName} отсутствует в базе");
+            Logger.Error($"Клиент c ID={client.Id}, Имя={client.FirstName}, Фамилия={client.LastName}, Отчество={client.MiddleName}, " +
+                         $"Номер телефона={client.PhoneNumber}, Пасспортные данные={client.PassportData} отсутствует в базе");
+            return false;
         }
         
         Clients[Clients.IndexOf(Clients.First(c=>c.Id == client.Id))] = client;
         Logger.Debug($"Клиент c ID={client.Id}, Имя={client.FirstName}, Фамилия={client.LastName}, Отчество={client.MiddleName}, " +
                      $"Номер телефона={client.PhoneNumber}, Пасспортные данные={client.PassportData} обновлен");
         Save();
+        return true;
     }
 
     /// <summary>

@@ -26,20 +26,20 @@ internal interface IClientsRepository
     /// <summary>
     /// Добавление клиента в репозиторий
     /// </summary>
-    void InsertClient(PhoneNumber phoneNumber, PassportData passportData, 
+    Client? InsertClient(PhoneNumber phoneNumber, PassportData passportData, 
         string firstName, string lastName, string middleName = "");
 
     /// <summary>
     /// Удаление клиента
     /// </summary>
-    /// <param name="id">ИД клиента</param>
-    void DeleteClient(int id);
+    /// <param name="client">Клиент</param>
+    bool DeleteClient(Client client);
 
     /// <summary>
     /// Обновление данных о клиенте
     /// </summary>
     /// <param name="client">Клиент</param>
-    void UpdateClient(Client client);
+    bool UpdateClient(Client client);
     
     /// <summary>
     /// Удаление всех данных

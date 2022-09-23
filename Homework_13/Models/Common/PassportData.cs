@@ -76,9 +76,7 @@ internal class PassportData
         Number = number;
     }
 
-    public override string ToString()
-    {
-        return $"{Serie}-{Number}";
-    }
+    public override string ToString() => $"{Serie}-{Number}";
+    
     
 }
