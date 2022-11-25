@@ -2,7 +2,7 @@
 using System.Runtime.CompilerServices;
 using NLog;
 
-namespace Homework_13.Infrastructure.ViewModels.Base;
+namespace Homework_13.ViewModels.Base;
 
 internal class BaseViewModel : INotifyPropertyChanged
 {
