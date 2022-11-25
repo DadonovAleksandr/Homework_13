@@ -13,12 +13,12 @@
         MinHeight="600" 
         MinWidth="900"
         WindowStyle="None"
-        Background="Transparent"
+        Background="Red"
         AllowsTransparency="True"
-        ResizeMode="CanResizeWithGrip">
-    <Window.DataContext>
-        <vm:MainWindowViewModel/>
-    </Window.DataContext>
+        ResizeMode="CanResizeWithGrip"
+        DataContext="{Binding MainWindowViewModel, Source={StaticResource Locator}}"
+        >
+    
     <Grid>
 
     </Grid>
