@@ -20,7 +20,6 @@
       <Folder Include="Infrastructure\Convertors" />
       <Folder Include="Infrastructure\Resources" />
       <Folder Include="Views\DataTemplates" />
-      <Folder Include="Views\Styles" />
     </ItemGroup>
 
 </Project>

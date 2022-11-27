@@ -1,0 +1,24 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <Style x:Key="SubTitle.Style"
+           TargetType="TextBlock">
+
+        <Setter Property="Margin"
+                Value="0 0 0 8"/>
+
+        <Setter Property="VerticalAlignment"
+                Value="Top"/>
+
+        <Setter Property="HorizontalAlignment"
+                Value="Left"/>
+
+        <Setter Property="Foreground"
+                Value="{DynamicResource Color.Text.Primary}"/>
+
+        <Setter Property="FontSize"
+                Value="10"/>
+
+        <Setter Property="FontWeight"
+                Value="Regular"/>
+    </Style>
+</ResourceDictionary>

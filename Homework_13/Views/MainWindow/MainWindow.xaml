@@ -6,6 +6,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Homework_13"
         xmlns:vm="clr-namespace:Homework_13.ViewModels"
+        xmlns:toolbar="clr-namespace:Homework_13.Infrastructure.Toolbar"
+        xmlns:extensions="clr-namespace:Homework_13.Views.Styles.Resources" 
         mc:Ignorable="d"
         Title="MainWindow"
         Height="700" 
@@ -13,13 +15,121 @@
         MinHeight="600" 
         MinWidth="900"
         WindowStyle="None"
-        Background="Red"
+        Background="Transparent"
         AllowsTransparency="True"
         ResizeMode="CanResizeWithGrip"
         DataContext="{Binding MainWindowViewModel, Source={StaticResource Locator}}"
         >
-    
-    <Grid>
+    <Window.Resources>
+        <toolbar:MinimizeWindowCommand x:Key="MinimizeWindowCommand"/>
+        <toolbar:MaximizeWindowCommand x:Key="MaximizeWindowCommand"/>
+        <toolbar:ShutDownCommand x:Key="ShutDownCommand"/>
+        <toolbar:MoveWindowCommand x:Key="MoveWindowCommand"/>
+        <!-- <converter:UserModeToString x:Key="UserModeToString"></converter:UserModeToString> -->
+    </Window.Resources>
+    <DockPanel Background="Transparent" Margin="0">
+        <Border Height="40" Background="{StaticResource Color.Main.Onyx.Default}"
+                DockPanel.Dock="Top"
+                CornerRadius="10,10,0,0">
+            <Border.InputBindings>
+                <MouseBinding MouseAction="LeftClick"
+                              Command="{StaticResource MoveWindowCommand}"/>
+            </Border.InputBindings>
+            
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width="100"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Text="Bank"
+                           Foreground="LightGray"
+                           FontFamily="Montserrat"
+                           VerticalAlignment="Center"
+                           HorizontalAlignment="Left"
+                           Margin="15,0,0,0"/>
+                <StackPanel Grid.Column="1" Orientation="Horizontal"
+                            Margin="0 0 8 0"
+                            HorizontalAlignment="Right">
+                    <Button Content="—" Command="{StaticResource MinimizeWindowCommand}"
+                            Padding="0,0,0,2 "/>
+                    <Button Content="🗖" Command="{StaticResource MaximizeWindowCommand}"
+                            Padding="0,0,0,2 "/>
+                    <Button Content="✕" Command="{StaticResource ShutDownCommand}"
+                            Padding="0,0,0,2 "/>
+                </StackPanel>
+            </Grid>
+        </Border>
+        <Border Height="1"
+                Margin="0 -1 0 0"
+                DockPanel.Dock="Top"
+                Background="{StaticResource Color.Main.Onyx.Darkest}"/>
+        <Border Margin="0 -1 0 0" 
+                Width="60"
+                DockPanel.Dock="Left"
+                Background="{StaticResource Color.Main.Onyx.Default}"
+                CornerRadius="0 0 0 10">
 
-    </Grid>
+            <Border.Style>
+                <Style>
+                    <Style.Triggers>
+
+                        <EventTrigger RoutedEvent="Border.MouseEnter">
+                            <EventTrigger.Actions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <DoubleAnimation Storyboard.TargetProperty="(Border.Width)"
+                                                         To="160"
+                                                         Duration="0:0:.1"/>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </EventTrigger.Actions>
+                        </EventTrigger>
+
+                        <EventTrigger RoutedEvent="Border.MouseLeave">
+                            <EventTrigger.Actions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <DoubleAnimation Storyboard.TargetProperty="(Border.Width)"
+                                                         To="60"
+                                                         Duration="0:0:.1"/>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </EventTrigger.Actions>
+                        </EventTrigger>
+                    </Style.Triggers>
+                </Style>
+            </Border.Style>
+
+            <StackPanel VerticalAlignment="Stretch">
+                <RadioButton Command="{Binding ShowAccountsView}"
+                             Content="Accounts"
+                             extensions:Extensions.Icon="📖"
+                             IsChecked="True">
+                </RadioButton>
+
+                <RadioButton Command="{Binding ShowNewAccountView}"
+                             Content="New account"
+                             extensions:Extensions.Icon="➕"/>
+
+                <RadioButton Command="{Binding ShowSettingsView}"
+                             Content="Settings"
+                             extensions:Extensions.Icon="⚙️"/>
+
+                <RadioButton Command="{Binding ShowAboutView}"
+                             Content="About"
+                             extensions:Extensions.Icon="🤚"/>
+            </StackPanel>
+        </Border>
+        <Border Width="1"
+                Margin="-1 0"
+                Background="{StaticResource Color.Main.Onyx.Darkest}"/>
+
+        <Border Height="2"
+                Margin="0 -1"
+                DockPanel.Dock="Top"
+                Background="{StaticResource Color.Main.Onyx.Light}"/>
+
+        <ContentPresenter Margin="0 -1 0 0" 
+                          Content="{Binding CurrentView}"/>
+    </DockPanel>
 </Window>

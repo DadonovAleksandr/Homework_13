@@ -6,10 +6,21 @@
              StartupUri="Views/MainWindow/MainWindow.xaml">
     <Application.Resources>
         <ResourceDictionary>
-            <!-- <ResourceDictionary.MergedDictionaries> -->
-            <!--     <ResourceDictionary Source="/Views/Styles/RibbonButtonStyle.xaml"/> -->
-            <!--     <ResourceDictionary Source="/Views/Styles/LogViewerStyle.xaml"/> -->
-            <!-- </ResourceDictionary.MergedDictionaries> -->
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Views/Styles/Themes/Nord/ColorStyle.Nord.xaml"/>
+                <ResourceDictionary Source="Views/Styles/Themes/Nord/TitleBarButton.Nord.xaml"/>
+                <ResourceDictionary Source="Views/Styles/Themes/Nord/Title.Nord.xaml"/>
+                <ResourceDictionary Source="Views/Styles/Themes/Nord/SubTitle.Nord.xaml"/>
+                <ResourceDictionary Source="Views/Styles/Themes/Nord/MenuButton.Nord.xaml"/>
+                <ResourceDictionary Source="Views/Styles/Themes/Nord/DataGrid.Nord.xaml"/>
+                <ResourceDictionary Source="Views/Styles/Themes/Nord/Button.Default.Nord.xaml"/>
+                <ResourceDictionary Source="Views/Styles/Themes/Nord/Button.Delete.Nord.xaml"/>
+                <ResourceDictionary Source="Views/Styles/Themes/Nord/ScrollBar.Nord.xaml"/>
+                <ResourceDictionary Source="Views/Styles/Themes/Nord/TextBox.Default.Nord.xaml"/>
+                <ResourceDictionary Source="Views/Styles/Themes/Nord/TextBox.Search.Nord.xaml"/>
+                <ResourceDictionary Source="Views/Styles/Themes/Nord/ResizeGrip.Nord.xaml"/>
+                <ResourceDictionary Source="Views/Styles/Resources/Icons.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
             <vm:ViewModelLocator x:Key="Locator"/>
         </ResourceDictionary>
     </Application.Resources>
