@@ -25,7 +25,6 @@
         <toolbar:MaximizeWindowCommand x:Key="MaximizeWindowCommand"/>
         <toolbar:ShutDownCommand x:Key="ShutDownCommand"/>
         <toolbar:MoveWindowCommand x:Key="MoveWindowCommand"/>
-        <!-- <converter:UserModeToString x:Key="UserModeToString"></converter:UserModeToString> -->
     </Window.Resources>
     <DockPanel Background="Transparent" Margin="0">
         <Border Height="40" Background="{StaticResource Color.Main.Onyx.Default}"
@@ -123,12 +122,10 @@
         <Border Width="1"
                 Margin="-1 0"
                 Background="{StaticResource Color.Main.Onyx.Darkest}"/>
-
         <Border Height="2"
                 Margin="0 -1"
                 DockPanel.Dock="Top"
                 Background="{StaticResource Color.Main.Onyx.Light}"/>
-
         <ContentPresenter Margin="0 -1 0 0" 
                           Content="{Binding CurrentView}"/>
     </DockPanel>
