@@ -40,7 +40,7 @@
                     <ColumnDefinition/>
                     <ColumnDefinition Width="100"/>
                 </Grid.ColumnDefinitions>
-                <TextBlock Text="Bank"
+                <TextBlock Text="{Binding Title}"
                            Foreground="LightGray"
                            FontFamily="Montserrat"
                            VerticalAlignment="Center"
@@ -100,7 +100,7 @@
             </Border.Style>
 
             <StackPanel VerticalAlignment="Stretch">
-                <RadioButton Command="{Binding ShowAccountsView}"
+                <RadioButton Command="{Binding ShowClientsView}"
                              Content="Accounts"
                              extensions:Extensions.Icon="📖"
                              IsChecked="True">
@@ -126,7 +126,11 @@
                 Margin="0 -1"
                 DockPanel.Dock="Top"
                 Background="{StaticResource Color.Main.Onyx.Light}"/>
-        <ContentPresenter Margin="0 -1 0 0" 
-                          Content="{Binding CurrentView}"/>
+        <DockPanel Background="Black">
+            <ContentPresenter Margin="0 -1 0 0" 
+                              Opacity="{Binding ViewOpacity}"
+                              Content="{Binding CurrentView}"/>    
+        </DockPanel>
+        
     </DockPanel>
 </Window>

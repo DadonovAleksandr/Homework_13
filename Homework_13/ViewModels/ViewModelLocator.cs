@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using Homework_13.ViewModels.MainWindowVM;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace Homework_13.ViewModels;
 
