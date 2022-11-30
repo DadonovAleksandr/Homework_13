@@ -10,6 +10,7 @@
                 <ResourceDictionary Source="Views/Styles/Themes/Nord/ColorStyle.Nord.xaml"/>
                 <ResourceDictionary Source="Views/Styles/Themes/Nord/TitleBarButton.Nord.xaml"/>
                 <ResourceDictionary Source="Views/Styles/Themes/Nord/Title.Nord.xaml"/>
+                <ResourceDictionary Source="Views/Styles/Themes/Nord/SimpleText.Nord.xaml"/>
                 <ResourceDictionary Source="Views/Styles/Themes/Nord/SubTitle.Nord.xaml"/>
                 <ResourceDictionary Source="Views/Styles/Themes/Nord/MenuButton.Nord.xaml"/>
                 <ResourceDictionary Source="Views/Styles/Themes/Nord/DataGrid.Nord.xaml"/>

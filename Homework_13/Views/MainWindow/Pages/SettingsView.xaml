@@ -5,13 +5,34 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:local="clr-namespace:Homework_13.Views.MainWindow.Pages"
              mc:Ignorable="d"
-             d:DesignHeight="300" d:DesignWidth="300">
+             d:DesignHeight="450" 
+             d:DesignWidth="800"
+             Background="{StaticResource Color.Main.Onyx.Dark}"
+             >
     <Grid>
-        <TextBlock Text="Настройки" 
-                   FontSize="30"
-                   HorizontalAlignment="Center"
-                   VerticalAlignment="Center"
-                   Foreground="Red"
-        />
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="60"/>
+            <RowDefinition Height="80"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        
+        <TextBlock Text="Настройки" Grid.Row="1" Style="{StaticResource Title.Style}"/>
+        
+        
+        
+        <StackPanel Grid.Row="2" Orientation="Vertical" Margin="40,0,20,0">
+            <TextBlock Style="{StaticResource SubTitle.Style}"
+                       Text="База клиентов" />
+            <TextBox Style="{StaticResource TextBox.Default.Style}" />
+            <Button Content="Генерировать"
+                    IsEnabled="True"
+                    HorizontalAlignment="Right"
+                    Background="Azure"
+                    Foreground="Bisque"
+                    />
+            
+        </StackPanel>
+            
     </Grid>
 </UserControl>
