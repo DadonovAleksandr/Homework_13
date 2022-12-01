@@ -3,36 +3,38 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             xmlns:local="clr-namespace:Homework_13.Views.MainWindow.Pages"
              mc:Ignorable="d"
              d:DesignHeight="450" 
              d:DesignWidth="800"
              Background="{StaticResource Color.Main.Onyx.Dark}"
+             DataContext="{Binding SettingsViewModel, Source={StaticResource Locator}}"
              >
     <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="40"/>
-            <RowDefinition Height="60"/>
-            <RowDefinition Height="80"/>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
+        <StackPanel Margin="40,40,20,0">
+            <TextBlock Text="Настройки" Style="{StaticResource Title.Style}"/>
         
-        <TextBlock Text="Настройки" Grid.Row="1" Style="{StaticResource Title.Style}"/>
-        
-        
-        
-        <StackPanel Grid.Row="2" Orientation="Vertical" Margin="40,0,20,0">
-            <TextBlock Style="{StaticResource SubTitle.Style}"
-                       Text="База клиентов" />
-            <TextBox Style="{StaticResource TextBox.Default.Style}" />
-            <Button Content="Генерировать"
-                    IsEnabled="True"
-                    HorizontalAlignment="Right"
-                    Background="Azure"
-                    Foreground="Bisque"
-                    />
-            
+            <StackPanel Orientation="Vertical" Margin="0,20,0,0">
+                <TextBlock Style="{StaticResource SubTitle.Style}" Text="База клиентов" />
+                <TextBox Text="{Binding ClientRepositoryFilePath, Mode=TwoWay}" Style="{StaticResource TextBox.Default.Style}" />
+                <Button Style="{StaticResource Button.Default.Style}"
+                        Command="{Binding GenTestClientsCommand}"
+                        HorizontalAlignment="Right"
+                        Width="150" Height="35">
+                    <StackPanel Orientation="Vertical">
+                        <TextBlock Text="Генерировать тестовый" HorizontalAlignment="Center"/>
+                        <TextBlock Text="набор клиентов" HorizontalAlignment="Center"/>    
+                    </StackPanel>
+                </Button>
+            </StackPanel>    
         </StackPanel>
-            
+        
+        <StackPanel VerticalAlignment="Bottom" Margin="40,0,20,20">
+            <Button Content="Сохранить"
+                    Command="{Binding SaveSettingsCommand}"
+                    Style="{StaticResource Button.Default.Style}"
+                    HorizontalAlignment="Right"
+                    VerticalAlignment="Bottom"
+                    Width="150" Height="35"/>
+        </StackPanel>
     </Grid>
 </UserControl>

@@ -1,5 +1,4 @@
-﻿using Homework_13.ViewModels.MainWindowVM;
-using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.Extensions.DependencyInjection;
 
 namespace Homework_13.ViewModels;
 
@@ -8,6 +7,7 @@ internal static class ViewModelRegistration
     public static IServiceCollection RegisterViewModels(this IServiceCollection services)
     {
         services.AddSingleton<MainWindowViewModel>();
+        services.AddSingleton<SettingsViewModel>();
         //services.AddTransient<LogViewerViewModel>();
         return services;
     }

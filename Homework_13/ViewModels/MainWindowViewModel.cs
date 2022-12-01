@@ -5,7 +5,7 @@ using Homework_13.Models.AppSettings;
 using Homework_13.ViewModels.Base;
 using Homework_13.Views.MainWindow.Pages;
 
-namespace Homework_13.ViewModels.MainWindowVM;
+namespace Homework_13.ViewModels;
 internal class MainWindowViewModel : BaseViewModel
 {
     /// <summary>
@@ -15,7 +15,7 @@ internal class MainWindowViewModel : BaseViewModel
     /// <summary>
     /// Настройки приложения
     /// </summary>
-    public AppSettings AppSettings { get; private set; }
+    //public AppSettings AppSettings { get; private set; }
     
     /// <summary>
     /// Модель банка
@@ -26,8 +26,8 @@ internal class MainWindowViewModel : BaseViewModel
     {
         logger.Debug($"Вызов конструктора {this.GetType().Name} по умолчанию");
         
-        _appSettingsrepository = new AppSettingsFileRepository();
-        AppSettings = _appSettingsrepository.Load();
+        //_appSettingsrepository = new AppSettingsFileRepository();
+        //AppSettings = _appSettingsrepository.Load();
         
         //Bank = new Bank("Банк А", new ClientsFileRepository(AppSettings.ClientsRepositoryFilePath), worker);
         //_Title = $"{Bank.Name}. Программа консультант";
