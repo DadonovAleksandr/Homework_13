@@ -5,14 +5,149 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:local="clr-namespace:Homework_13.Views.MainWindow.Pages"
              mc:Ignorable="d"
-             d:DesignHeight="300" d:DesignWidth="300"
+             d:DesignHeight="500" 
+             d:DesignWidth="1000"
+             Background="{StaticResource Color.Main.Onyx.Dark}"
+             DataContext="{Binding ClientsViewModel, Source={StaticResource Locator}}"
              >
     <Grid>
-        <TextBlock Text="Клиенты" 
-                   FontSize="30"
-                   HorizontalAlignment="Center"
-                   VerticalAlignment="Center"
-                   Foreground="Red"
-                   />
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition />
+            <RowDefinition Height="20" />
+        </Grid.RowDefinitions>
+        
+        
+        <StackPanel Grid.Row="1" Margin="40,0,0,20" Orientation="Horizontal">
+            <TextBlock Text="Клиенты" Style="{StaticResource Title.Style}"/>
+            <TextBox Text="" 
+                     Style="{StaticResource TextBox.Search.Style}"
+                     Margin="20,0,0,0"/>
+        </StackPanel>
+        
+        <Grid Grid.Row="2" Margin="40,0,20,0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="2.5*"/>
+                <ColumnDefinition Width="0.1*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+                    
+            <Border Grid.Column="0"
+                    Background="{DynamicResource Color.DataGrid.Static.Background}"
+                    CornerRadius="5" >
+                        <DataGrid Grid.Column="0" 
+                              ItemsSource="{Binding Accounts}"
+                              SelectedItem="{Binding SelectedAccount}"
+                              ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle}"
+                              RowStyle="{DynamicResource DataGridRowStyle}"
+                              CellStyle="{DynamicResource DataGridCellStyle}"
+                              ScrollViewer.CanContentScroll="True"
+                              ScrollViewer.VerticalScrollBarVisibility="Auto">
+
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Visibility="Collapsed"
+                                                Header="Added"
+                                                Width="100*"
+                                                MinWidth="100"
+                                                CanUserSort="True" />
+
+                            <DataGridTextColumn Visibility="Collapsed"
+                                                Header="Edited"
+                                                Width="100*"
+                                                MinWidth="100"
+                                                IsReadOnly="True" />
+
+                            <DataGridTextColumn Header="ID"
+                                                Width="60*"
+                                                MinWidth="60"
+                                                IsReadOnly="True"
+                                                CanUserSort="True"
+                                                Binding="{Binding Path=Id}" />
+
+                            <DataGridTextColumn Header="First name"
+                                                Width="180*"
+                                                MinWidth="180"
+                                                IsReadOnly="True"
+                                                CanUserSort="True"
+                                                Binding="{Binding FirstName}" />
+
+                            <DataGridTextColumn Header="Last name"
+                                                Width="180*"
+                                                MinWidth="180"
+                                                IsReadOnly="True"
+                                                CanUserSort="True"
+                                                Binding="{Binding LastName}" />
+
+                            <DataGridTextColumn Header="Phone"
+                                                Width="100*"
+                                                MinWidth="100"
+                                                IsReadOnly="True"
+                                                CanUserSort="True"
+                                                Binding="{Binding PhoneNumber}" />
+
+                            <DataGridTextColumn Header="Passport"
+                                                Width="100*"
+                                                MinWidth="100"
+                                                IsReadOnly="True"
+                                                CanUserSort="True"
+                                                Binding="{Binding Passport}" />
+                        </DataGrid.Columns>
+                    </DataGrid>
+                        
+                    </Border>
+                    
+            <Grid Grid.Column="2" Visibility="Visible">
+                <Grid.RowDefinitions>
+                    <RowDefinition />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+
+                <StackPanel Grid.Row="0" Orientation="Vertical">
+
+                    <TextBlock Text="First name" Style="{StaticResource SubTitle.Style}"/>
+                    <TextBox Style="{StaticResource TextBox.Default.Style}"
+                             Text="{Binding SelectedAccount.FirstName, 
+                             UpdateSourceTrigger=PropertyChanged, 
+                             Mode=TwoWay}" />
+
+                    <TextBlock Text="Last name" Style="{StaticResource SubTitle.Style}"/>
+                    <TextBox Style="{StaticResource TextBox.Default.Style}"
+                             Text="{Binding SelectedAccount.LastName, 
+                             UpdateSourceTrigger=PropertyChanged}" />
+
+                    <TextBlock Text="Phone number" Style="{StaticResource SubTitle.Style}"/>
+                    <TextBox Style="{StaticResource TextBox.Default.Style}"
+                             Text="{Binding SelectedAccount.PhoneNumber, 
+                             UpdateSourceTrigger=PropertyChanged, 
+                             Mode=OneWay}"/>
+
+                    <TextBlock Text="Passport" Style="{StaticResource SubTitle.Style}"/>
+                    <TextBox Style="{StaticResource TextBox.Default.Style}"
+                             Text="{Binding SelectedAccount.Passport, 
+                             UpdateSourceTrigger=PropertyChanged, 
+                             Mode=OneWay}"/>
+                </StackPanel>
+                <StackPanel Grid.Row="1" Orientation="Horizontal"
+                            VerticalAlignment="Bottom"
+                            HorizontalAlignment="Left"
+                            Margin="-4 40 0 0">
+
+                    <Button x:Name="ApplyButton"
+                            Style="{StaticResource Button.Default.Style}"
+                            Content="Apply"
+                            Command="{Binding UpdateAccountCommand}"
+                            CommandParameter="{Binding SelectedAccount}" />
+
+
+                    <Button x:Name="DeleteButton"
+                            Style="{StaticResource Button.Delete.Style}"
+                            Content="🚫 Delete account"
+                            Command="{Binding RemoveAccountCommand}"
+                            CommandParameter="{Binding SelectedAccount}" />
+                </StackPanel>
+            </Grid>
+        </Grid>
+            
     </Grid>
 </UserControl>

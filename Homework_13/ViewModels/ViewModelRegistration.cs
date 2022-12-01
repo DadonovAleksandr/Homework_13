@@ -8,6 +8,7 @@ internal static class ViewModelRegistration
     {
         services.AddSingleton<MainWindowViewModel>();
         services.AddSingleton<SettingsViewModel>();
+        services.AddSingleton<ClientsViewModel>();
         //services.AddTransient<LogViewerViewModel>();
         return services;
     }
