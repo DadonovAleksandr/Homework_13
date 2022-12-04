@@ -47,4 +47,10 @@ internal class AppSettingsFileRepository : IAppSettingsRepository
         string data = File.ReadAllText(_path);
         return JsonSerializer.Deserialize<AppSettings>(data) ?? new AppSettings();
     }
+
+    public override string ToString()
+    {
+        return $"Файловый репозиторий: {_path}";
+    }
+    
 }

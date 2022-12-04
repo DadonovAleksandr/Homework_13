@@ -8,10 +8,18 @@ namespace Homework_13.ViewModels;
 
 internal class ClientsViewModel : BaseViewModel
 {
-    public ObservableCollection<Client> Clients { get; }
+    private IClientsRepository _repository;
+    public ObservableCollection<Client> Clients { get; private set; }
 
-    public ClientsViewModel()
+    public ClientsViewModel(IClientsRepository repository)
     {
+        _repository = repository;
+        
+        Clients = new ObservableCollection<Client>();
+        foreach (var client in _repository.GetAllClients()!)
+        {
+            Clients.Add(client);
+        }
         
         #region Commands
         AddClientCommand = new LambdaCommand(OnAddClientCommandExecuted, CanAddClientCommandExecute);

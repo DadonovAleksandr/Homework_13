@@ -2,16 +2,24 @@
 
 namespace Homework_13.Models.AppSettings;
 /// <summary>
-/// Настройки приложения
+/// Настройки приложения (потоконебезопасный синглтон)
 /// </summary>
 internal class AppSettings
 {
     private static Logger _logger = LogManager.GetCurrentClassLogger();
+    private static AppSettings _instance;
     
     public AppSettings()
     {
         _logger.Debug($"Вызов конструктора {GetType().Name}");
         _clientsRepositoryFilePath = string.Empty;
+    }
+
+    public static AppSettings Get()
+    {
+        if(_instance is null)
+            _instance = new AppSettings();
+        return _instance;
     }
     
     private string _clientsRepositoryFilePath; 

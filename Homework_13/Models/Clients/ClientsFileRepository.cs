@@ -59,6 +59,12 @@ internal class ClientsFileRepository : IClientsRepository, IEnumerable<Client>
         File.Create(_path);
         NoClientsForLoad();
     }
+
+    /// <summary>
+    /// Конструктор без паретров
+    /// </summary>
+    public ClientsFileRepository() : this(AppSettings.AppSettings.Get().ClientsRepositoryFilePath) { }
+    
     /// <summary>
     /// Получение следующего свободного идентификатора клиента
     /// </summary>
