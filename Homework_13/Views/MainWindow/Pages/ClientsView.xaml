@@ -37,8 +37,8 @@
                     Background="{DynamicResource Color.DataGrid.Static.Background}"
                     CornerRadius="5" >
                         <DataGrid Grid.Column="0" 
-                              ItemsSource="{Binding Accounts}"
-                              SelectedItem="{Binding SelectedAccount}"
+                              ItemsSource="{Binding Clients}"
+                              SelectedItem="{Binding SelectedClient}"
                               ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle}"
                               RowStyle="{DynamicResource DataGridRowStyle}"
                               CellStyle="{DynamicResource DataGridCellStyle}"
@@ -107,24 +107,24 @@
 
                     <TextBlock Text="First name" Style="{StaticResource SubTitle.Style}"/>
                     <TextBox Style="{StaticResource TextBox.Default.Style}"
-                             Text="{Binding SelectedAccount.FirstName, 
+                             Text="{Binding SelectedClient.FirstName, 
                              UpdateSourceTrigger=PropertyChanged, 
                              Mode=TwoWay}" />
 
                     <TextBlock Text="Last name" Style="{StaticResource SubTitle.Style}"/>
                     <TextBox Style="{StaticResource TextBox.Default.Style}"
-                             Text="{Binding SelectedAccount.LastName, 
+                             Text="{Binding SelectedClient.LastName, 
                              UpdateSourceTrigger=PropertyChanged}" />
 
                     <TextBlock Text="Phone number" Style="{StaticResource SubTitle.Style}"/>
                     <TextBox Style="{StaticResource TextBox.Default.Style}"
-                             Text="{Binding SelectedAccount.PhoneNumber, 
+                             Text="{Binding SelectedClient.PhoneNumber, 
                              UpdateSourceTrigger=PropertyChanged, 
                              Mode=OneWay}"/>
 
                     <TextBlock Text="Passport" Style="{StaticResource SubTitle.Style}"/>
                     <TextBox Style="{StaticResource TextBox.Default.Style}"
-                             Text="{Binding SelectedAccount.Passport, 
+                             Text="{Binding SelectedClient.PassportData, 
                              UpdateSourceTrigger=PropertyChanged, 
                              Mode=OneWay}"/>
                 </StackPanel>
