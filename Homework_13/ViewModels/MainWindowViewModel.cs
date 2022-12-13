@@ -1,7 +1,9 @@
 ﻿using System.Windows.Controls;
 using System.Windows.Input;
 using Homework_13.Infrastructure.Commands;
+using Homework_13.Models;
 using Homework_13.Models.AppSettings;
+using Homework_13.Models.Clients;
 using Homework_13.ViewModels.Base;
 using Homework_13.Views.MainWindow.Pages;
 
@@ -9,27 +11,18 @@ namespace Homework_13.ViewModels;
 internal class MainWindowViewModel : BaseViewModel
 {
     /// <summary>
-    /// Репозиторий настроек приложения
-    /// </summary>
-    IAppSettingsRepository _appSettingsrepository;
-    /// <summary>
-    /// Настройки приложения
-    /// </summary>
-    //public AppSettings AppSettings { get; private set; }
-    
-    /// <summary>
     /// Модель банка
     /// </summary>
-    //public Bank Bank { get; private set; }
+    public Bank Bank { get; private set; }
     
-    public MainWindowViewModel()
+    public MainWindowViewModel(IAppSettingsRepository repository)
     {
         logger.Debug($"Вызов конструктора {this.GetType().Name} по умолчанию");
         
-        //_appSettingsrepository = new AppSettingsFileRepository();
-        //AppSettings = _appSettingsrepository.Load();
+        //загрузка настроек
+        AppSettings.Set(repository.Load());
         
-        //Bank = new Bank("Банк А", new ClientsFileRepository(AppSettings.ClientsRepositoryFilePath), worker);
+        Bank = new Bank("Банк А", new ClientsFileRepository(AppSettings.Get().ClientsRepositoryFilePath));
         //_Title = $"{Bank.Name}. Программа консультант";
         //Worker = worker;
         

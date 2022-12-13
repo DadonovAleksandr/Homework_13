@@ -16,8 +16,7 @@ internal class SettingsViewModel : BaseViewModel
     {
         logger.Debug($"Вызов конструктора {this.GetType().Name}");
         _repository = repository;
-        var appSettings = AppSettings.Get();
-        appSettings = repository.Load();
+        AppSettings.Set(repository.Load());
         
         #region Commands
         SaveSettingsCommand = new LambdaCommand(OnSaveAppSettingsCommandExecuted, CanSaveAppSettingsCommandExecute);
