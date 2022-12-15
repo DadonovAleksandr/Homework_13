@@ -45,4 +45,9 @@ internal interface IClientsRepository
     /// Удаление всех данных
     /// </summary>
     void Clear();
+
+    /// <summary>
+    /// Обновление данных
+    /// </summary>
+    void Update();
 }

@@ -1,0 +1,83 @@
+﻿<Window x:Class="Homework_13.Views.InputTestClientsCountView"
+        x:Name="InputTestClientsCountWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:local="clr-namespace:Homework_13.Views"
+        xmlns:toolbar="clr-namespace:Homework_13.Infrastructure.Toolbar"
+        mc:Ignorable="d"
+        Title="MainWindow"
+        Height="200" 
+        Width="400"
+        WindowStyle="None"
+        Background="Transparent"
+        AllowsTransparency="True"
+        ResizeMode="NoResize"
+        WindowStartupLocation="CenterOwner"
+        DataContext="{Binding InputTestClientsCountVm, Source={StaticResource Locator}}"
+        >
+    <Window.Resources>
+        <toolbar:MoveWindowCommand x:Key="MoveWindowCommand"/>
+    </Window.Resources>
+    <DockPanel>
+        <Border Height="40" Background="{StaticResource Color.Main.Onyx.Default}"
+                DockPanel.Dock="Top"
+                CornerRadius="10,10,0,0">
+            <Border.InputBindings>
+                <MouseBinding MouseAction="LeftClick"
+                              Command="{StaticResource MoveWindowCommand}"/>
+            </Border.InputBindings>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width="100"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Text="{Binding Title}"
+                           Foreground="LightGray"
+                           FontFamily="Montserrat"
+                           VerticalAlignment="Center"
+                           HorizontalAlignment="Left"
+                           Margin="15,0,0,0"/>
+                <StackPanel Grid.Column="1" Orientation="Horizontal"
+                            Margin="0 0 8 0"
+                            HorizontalAlignment="Right">
+                    <Button Content="✕" 
+                            IsCancel="True"
+                            Padding="0,0,0,2 "/>
+                </StackPanel>
+            </Grid>
+        </Border>
+        <Border Height="1"
+                Margin="0 -1 0 0"
+                DockPanel.Dock="Top"
+                Background="{StaticResource Color.Main.Onyx.Darkest}"/>
+        <Border Height="2"
+                Margin="0 -1"
+                DockPanel.Dock="Top"
+                Background="{StaticResource Color.Main.Onyx.Light}"/>
+        <Border CornerRadius="0,0,10,10"
+                DockPanel.Dock="Bottom"
+                Background="{StaticResource Color.Main.Onyx.Dark}">
+            <DockPanel>
+                <StackPanel Orientation="Vertical" Margin="20,20,20,10">
+                    <TextBlock Style="{StaticResource SubTitle.Style}" Text="Кол-во тестовых клиентов" />
+                    <TextBox Text="{Binding TestClientsCount, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                             HorizontalContentAlignment="Right"
+                             Style="{StaticResource TextBox.Default.Style}" />
+                    <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Right">
+                        <Button Content="Применить" 
+                                IsDefault="True"
+                                Command="{Binding ApplyCommand}"
+                                CommandParameter="{Binding ElementName=InputTestClientsCountWindow}"
+                                Style="{StaticResource Button.Default.Style}"/>
+                        <Button Content="Отмена"
+                                IsCancel="True"
+                                Style="{StaticResource Button.Default.Style}"/>
+                    </StackPanel>
+                </StackPanel>
+            </DockPanel>
+        </Border>
+        
+    </DockPanel>
+</Window>

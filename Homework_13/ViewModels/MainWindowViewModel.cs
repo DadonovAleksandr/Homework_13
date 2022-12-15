@@ -27,8 +27,8 @@ internal class MainWindowViewModel : BaseViewModel
         //Worker = worker;
         
         #region Pages
-        _clients = new ClientsView();
-        _appSettings = new SettingsView();
+        //_clients = new ClientsView();
+        //_appSettings = new SettingsView();
 
         ViewOpacity = 1.0;
         CurrentView = new ClientsView();
@@ -41,8 +41,8 @@ internal class MainWindowViewModel : BaseViewModel
     }
     
     #region Pages
-    private readonly UserControl _clients;
-    private readonly UserControl _appSettings;
+    //private readonly UserControl _clients;
+    //private readonly UserControl _appSettings;
 
     private UserControl _currentView;
     /// <summary>
@@ -70,20 +70,13 @@ internal class MainWindowViewModel : BaseViewModel
 
     #region SetClientsViewCommand
     public ICommand ShowClientsView { get; }
-    private void OnSetClientsViewExecuted(object p)
-    {
-        CurrentView = _clients;
-        // if (_clients.DataContext is ClientsViewModel clientsVm)
-        // {
-        //     clientsVm.UpdateClientsList.Invoke();
-        // }
-    }
+    private void OnSetClientsViewExecuted(object p) => CurrentView = new ClientsView();
     private bool CanSetClientsViewExecute(object p) => true;
     #endregion
     
     #region SetAppSettingsViewCommand
     public ICommand ShowSettingsView { get; }
-    private void OnSetAppSettingsViewExecuted(object p) => CurrentView = _appSettings;
+    private void OnSetAppSettingsViewExecuted(object p) => CurrentView = new SettingsView();
     private bool CanSetAppSettingsViewExecute(object p) => true;
     #endregion
     

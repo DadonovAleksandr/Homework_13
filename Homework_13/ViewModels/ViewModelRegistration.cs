@@ -7,8 +7,9 @@ internal static class ViewModelRegistration
     public static IServiceCollection RegisterViewModels(this IServiceCollection services)
     {
         services.AddSingleton<MainWindowViewModel>();
-        services.AddSingleton<SettingsViewModel>();
-        services.AddSingleton<ClientsViewModel>();
+        services.AddTransient<SettingsViewModel>();
+        services.AddTransient<ClientsViewModel>();
+        services.AddSingleton<InputTestClientsCountViewModel>();
         //services.AddTransient<LogViewerViewModel>();
         return services;
     }

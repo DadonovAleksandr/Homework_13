@@ -18,7 +18,8 @@
         Background="Transparent"
         AllowsTransparency="True"
         ResizeMode="CanResizeWithGrip"
-        DataContext="{Binding MainWindowViewModel, Source={StaticResource Locator}}"
+        WindowStartupLocation="CenterScreen"
+        DataContext="{Binding MainWindowVm, Source={StaticResource Locator}}"
         >
     <Window.Resources>
         <toolbar:MinimizeWindowCommand x:Key="MinimizeWindowCommand"/>

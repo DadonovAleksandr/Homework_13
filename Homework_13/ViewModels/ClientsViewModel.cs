@@ -13,7 +13,9 @@ internal class ClientsViewModel : BaseViewModel
 
     public ClientsViewModel(IClientsRepository repository)
     {
+        logger.Debug($"Вызов конструктора {this.GetType().Name}");
         _repository = repository;
+        _repository.Update();
         
         Clients = new ObservableCollection<Client>();
         foreach (var client in _repository.GetAllClients()!)

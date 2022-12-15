@@ -7,7 +7,7 @@
              d:DesignHeight="450" 
              d:DesignWidth="800"
              Background="{StaticResource Color.Main.Onyx.Dark}"
-             DataContext="{Binding SettingsViewModel, Source={StaticResource Locator}}"
+             DataContext="{Binding SettingsVm, Source={StaticResource Locator}}"
              >
     <Grid>
         <StackPanel Margin="40,40,20,0">
@@ -16,15 +16,23 @@
             <StackPanel Orientation="Vertical" Margin="0,20,0,0">
                 <TextBlock Style="{StaticResource SubTitle.Style}" Text="База клиентов" />
                 <TextBox Text="{Binding ClientRepositoryFilePath, Mode=TwoWay}" Style="{StaticResource TextBox.Default.Style}" />
-                <Button Style="{StaticResource Button.Default.Style}"
-                        Command="{Binding GenTestClientsCommand}"
-                        HorizontalAlignment="Right"
-                        Width="150" Height="35">
-                    <StackPanel Orientation="Vertical">
-                        <TextBlock Text="Генерировать тестовый" HorizontalAlignment="Center"/>
-                        <TextBlock Text="набор клиентов" HorizontalAlignment="Center"/>    
-                    </StackPanel>
-                </Button>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                    <Button Style="{StaticResource Button.Default.Style}"
+                            Command="{Binding GenTestClientsCommand}"
+                            HorizontalAlignment="Right"
+                            Width="150" Height="35">
+                        <StackPanel Orientation="Vertical">
+                            <TextBlock Text="Генерировать тестовый" HorizontalAlignment="Center"/>
+                            <TextBlock Text="набор клиентов" HorizontalAlignment="Center"/>    
+                        </StackPanel>
+                    </Button>
+                    <Button Style="{StaticResource Button.Delete.Style}"
+                            Content="Очистить базу"
+                            Command="{Binding ClearClientsCommand}"
+                            Width="135" Height="35"
+                            />
+                </StackPanel>
+                
             </StackPanel>    
         </StackPanel>
         

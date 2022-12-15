@@ -4,7 +4,8 @@ namespace Homework_13.ViewModels;
 
 internal class ViewModelLocator
 {
-    public MainWindowViewModel MainWindowViewModel => App.Host.Services.GetRequiredService<MainWindowViewModel>();
-    public SettingsViewModel SettingsViewModel => App.Host.Services.GetRequiredService<SettingsViewModel>();
-    public ClientsViewModel ClientsViewModel => App.Host.Services.GetRequiredService<ClientsViewModel>();
+    public MainWindowViewModel MainWindowVm => App.Host.Services.GetRequiredService<MainWindowViewModel>();
+    public SettingsViewModel SettingsVm => App.Host.Services.GetRequiredService<SettingsViewModel>();
+    public ClientsViewModel ClientsVm => App.Host.Services.GetRequiredService<ClientsViewModel>();
+    public InputTestClientsCountViewModel InputTestClientsCountVm => App.Host.Services.GetRequiredService<InputTestClientsCountViewModel>();
 }

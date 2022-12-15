@@ -50,14 +50,7 @@ internal class ClientsFileRepository : IClientsRepository, IEnumerable<Client>
         }
         _path = path;
 
-        if (File.Exists(_path)) // если файл существует, подгружаем данные
-        {
-            Load();
-            return;
-        }
-        // если файл не существует, создаем новый пустой репозиторий
-        File.Create(_path);
-        NoClientsForLoad();
+        Update();
     }
 
     /// <summary>
@@ -178,7 +171,24 @@ internal class ClientsFileRepository : IClientsRepository, IEnumerable<Client>
     public void Clear()
     {
         if (Clients is null) ClientsIsNull();
+        Logger.Warn($"Выполнена очистка базы клиентов. Удалено {Clients.Count} записей");
         Clients.Clear();
+        Save();
+    }
+    
+    /// <summary>
+    /// Обновление данных
+    /// </summary>
+    public void Update()
+    {
+        if (File.Exists(_path)) // если файл существует, подгружаем данные
+        {
+            Load();
+            return;
+        }
+        // если файл не существует, создаем новый пустой репозиторий
+        File.Create(_path);
+        NoClientsForLoad();
     }
     
     /// <summary>

@@ -5,6 +5,7 @@ using Homework_13.Models.AppSettings;
 using Homework_13.Models.Clients;
 using Homework_13.Models.Common;
 using Homework_13.ViewModels.Base;
+using Homework_13.Views;
 
 namespace Homework_13.ViewModels;
 
@@ -21,6 +22,7 @@ internal class SettingsViewModel : BaseViewModel
         #region Commands
         SaveSettingsCommand = new LambdaCommand(OnSaveAppSettingsCommandExecuted, CanSaveAppSettingsCommandExecute);
         GenTestClientsCommand = new LambdaCommand(OnGenTestClientsCommandExecuted, CanGenTestClientsCommandExecute);
+        ClearClientsCommand = new LambdaCommand(OnClearClientsCommandExecuted, CanClearClientsCommandExecute);
         #endregion
     }
     
@@ -44,9 +46,17 @@ internal class SettingsViewModel : BaseViewModel
 
     private void OnGenTestClientsCommandExecuted(object p)
     {
+        var dw = new InputTestClientsCountView();
+        dw.ShowDialog();
+        
+        if(!dw.DialogResult.HasValue || !dw.DialogResult.Value)
+            return;
+        if(!int.TryParse(((InputTestClientsCountViewModel)dw.DataContext).TestClientsCount, out var count))
+            return;
+        
         AppSettings.Get().ClientsRepositoryFilePath = ClientRepositoryFilePath = Path.Combine(Directory.GetCurrentDirectory(), @"clients.json");
-        ClientsFileRepository clientsRepository = new ClientsFileRepository(ClientRepositoryFilePath);
-        for (int i = 1; i <= 20; i++)
+        var clientsRepository = new ClientsFileRepository(ClientRepositoryFilePath);
+        for (int i = 1; i <= count; i++)
         {
             clientsRepository.InsertClient(
                 new PhoneNumber($"+7900800{(i>9 ? i : "0"+i)}"),
@@ -59,6 +69,20 @@ internal class SettingsViewModel : BaseViewModel
 
     private bool CanGenTestClientsCommandExecute(object p) => true;
     #endregion
+    
+    #region ClearClientsCommand
+    public ICommand ClearClientsCommand { get; }
+
+    private void OnClearClientsCommandExecuted(object p)
+    {
+        var clientsRepository = new ClientsFileRepository(ClientRepositoryFilePath);
+        clientsRepository.Clear();
+        
+    }
+
+    private bool CanClearClientsCommandExecute(object p) => true;
+    #endregion
+
     
     #endregion
     

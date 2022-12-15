@@ -8,7 +8,7 @@
              d:DesignHeight="500" 
              d:DesignWidth="1000"
              Background="{StaticResource Color.Main.Onyx.Dark}"
-             DataContext="{Binding ClientsViewModel, Source={StaticResource Locator}}"
+             DataContext="{Binding ClientsVm, Source={StaticResource Locator}}"
              >
     <Grid>
         <Grid.RowDefinitions>
