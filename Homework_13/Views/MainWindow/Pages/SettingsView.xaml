@@ -14,6 +14,11 @@
             <TextBlock Text="Настройки" Style="{StaticResource Title.Style}"/>
         
             <StackPanel Orientation="Vertical" Margin="0,20,0,0">
+                <TextBlock Style="{StaticResource SubTitle.Style}" Text="Наименование банка" />
+                <TextBox Text="{Binding BankTitle, Mode=TwoWay}" Style="{StaticResource TextBox.Default.Style}" />
+            </StackPanel>
+            
+            <StackPanel Orientation="Vertical" Margin="0,20,0,0">
                 <TextBlock Style="{StaticResource SubTitle.Style}" Text="База клиентов" />
                 <TextBox Text="{Binding ClientRepositoryFilePath, Mode=TwoWay}" Style="{StaticResource TextBox.Default.Style}" />
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">

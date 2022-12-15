@@ -22,7 +22,7 @@ internal class MainWindowViewModel : BaseViewModel
         //загрузка настроек
         AppSettings.Set(repository.Load());
         
-        Bank = new Bank("Банк А", new ClientsFileRepository(AppSettings.Get().ClientsRepositoryFilePath));
+        Bank = new Bank(Title, new ClientsFileRepository(AppSettings.Get().ClientsRepositoryFilePath));
         //_Title = $"{Bank.Name}. Программа консультант";
         //Worker = worker;
         
@@ -82,16 +82,10 @@ internal class MainWindowViewModel : BaseViewModel
     
     #endregion
     
-    #region Window title
-    
-    private string _title = "Банк";
+    #region Заголовок окна
     /// <summary>
     /// Заголовок окна
     /// </summary>
-    public string Title
-    {
-        get => _title;
-        set => Set(ref _title, value);
-    }
+    public string Title => AppSettings.Get().BankTitle;
     #endregion
 }

@@ -22,12 +22,10 @@ internal class AppSettings
         return _instance;
     }
     
-    public static void Set(AppSettings settings)
-    {
-        _instance = settings;
-    }
-    
-    private string _clientsRepositoryFilePath; 
+    public static void Set(AppSettings settings) => _instance = settings;
+
+    #region Путь до базы клиентов
+    private string _clientsRepositoryFilePath;
     /// <summary>
     /// Путь до базы клиентов
     /// </summary>
@@ -47,7 +45,9 @@ internal class AppSettings
             _clientsRepositoryFilePath = value;
         }
     }
+    #endregion
     
+    #region Наименование банка
     private string _bankTitle; 
     /// <summary>
     /// Наименование банка
@@ -58,14 +58,13 @@ internal class AppSettings
         {
             if (string.IsNullOrEmpty(_bankTitle))
             {
-                _clientsRepositoryFilePath = @"clients.json";
+                _bankTitle = @"Банк";
                 _logger.Warn($"Устанавливаем наименование банка по умолчанию: {_bankTitle}");
             }
             return _bankTitle;
         }
-        set
-        {
-            _bankTitle = value;
-        }
+        set => _bankTitle = value;
     }
+    #endregion
+    
 }

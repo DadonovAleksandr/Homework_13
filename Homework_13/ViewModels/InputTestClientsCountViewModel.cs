@@ -10,6 +10,7 @@ internal class InputTestClientsCountViewModel : BaseViewModel
 {
     public InputTestClientsCountViewModel()
     {
+        _testClientsCount = "10";
         
         #region Commands
         ApplyCommand = new LambdaCommand(OnApplyCommandExecuted, CanApplyCommandExecute);

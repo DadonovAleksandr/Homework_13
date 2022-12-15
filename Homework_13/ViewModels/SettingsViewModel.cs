@@ -17,7 +17,6 @@ internal class SettingsViewModel : BaseViewModel
     {
         logger.Debug($"Вызов конструктора {this.GetType().Name}");
         _repository = repository;
-        AppSettings.Set(repository.Load());
         
         #region Commands
         SaveSettingsCommand = new LambdaCommand(OnSaveAppSettingsCommandExecuted, CanSaveAppSettingsCommandExecute);
@@ -86,10 +85,26 @@ internal class SettingsViewModel : BaseViewModel
     
     #endregion
     
-    #region ClientRepositoryFilePath
+    #region Наименование банка
+    private string _bankTitle;
+    /// <summary>
+    /// Путь до базы клиентов
+    /// </summary>
+    public string BankTitle
+    {
+        get => AppSettings.Get().BankTitle;
+        set
+        {
+            Set(ref _bankTitle, value);
+            AppSettings.Get().BankTitle = _bankTitle;
+        }
+    }
+    #endregion
+    
+    #region Путь до базы клиентов
     private string _clientRepositoryFilePath;
     /// <summary>
-    /// Настройки приложения
+    /// Путь до базы клиентов
     /// </summary>
     public string ClientRepositoryFilePath
     {
@@ -101,4 +116,6 @@ internal class SettingsViewModel : BaseViewModel
         }
     }
     #endregion
+    
+    
 }
