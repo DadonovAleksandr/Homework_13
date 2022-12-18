@@ -1,4 +1,6 @@
-﻿using Homework_13.Models.Common;
+﻿using System.Collections.Generic;
+using Homework_13.Models.BankAccounts;
+using Homework_13.Models.Common;
 using NLog;
 
 namespace Homework_13.Models.Clients;
@@ -23,7 +25,11 @@ internal class Client : Person
     /// </summary>
     public PassportData PassportData { get; set; }
 
-    
+    /// <summary>
+    /// Банковские счета
+    /// </summary>
+    public List<BankAccount> Accounts { get; }
+
     /// <summary>
     /// Создаем клиента
     /// </summary>
