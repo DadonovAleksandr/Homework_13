@@ -4,12 +4,16 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:local="clr-namespace:Homework_13.Views.MainWindow.Pages"
+             xmlns:c="clr-namespace:Homework_13.Infrastructure.Convertors"
              mc:Ignorable="d"
              d:DesignHeight="500" 
              d:DesignWidth="1000"
              Background="{StaticResource Color.Main.Onyx.Dark}"
-             DataContext="{Binding ClientsVm, Source={StaticResource Locator}}"
-             >
+             DataContext="{Binding ClientsVm, Source={StaticResource Locator}}">
+    <UserControl.Resources>
+        <c:ClientToFioConvertor x:Key="ClientToFio"></c:ClientToFioConvertor>
+        <c:PassportToStringConvertor x:Key="PassportToString"></c:PassportToStringConvertor>
+    </UserControl.Resources>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="40" />
@@ -28,7 +32,7 @@
         
         <Grid Grid.Row="2" Margin="40,0,20,0">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="2.5*"/>
+                <ColumnDefinition Width="5*"/>
                 <ColumnDefinition Width="0.1*"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
@@ -44,57 +48,23 @@
                               CellStyle="{DynamicResource DataGridCellStyle}"
                               ScrollViewer.CanContentScroll="True"
                               ScrollViewer.VerticalScrollBarVisibility="Auto">
-
-                        <DataGrid.Columns>
-                            <DataGridTextColumn Visibility="Collapsed"
-                                                Header="Added"
-                                                Width="100*"
-                                                MinWidth="100"
-                                                CanUserSort="True" />
-
-                            <DataGridTextColumn Visibility="Collapsed"
-                                                Header="Edited"
-                                                Width="100*"
-                                                MinWidth="100"
-                                                IsReadOnly="True" />
-
-                            <DataGridTextColumn Header="ID"
-                                                Width="60*"
-                                                MinWidth="60"
-                                                IsReadOnly="True"
-                                                CanUserSort="True"
-                                                Binding="{Binding Path=Id}" />
-
-                            <DataGridTextColumn Header="First name"
-                                                Width="180*"
-                                                MinWidth="180"
-                                                IsReadOnly="True"
-                                                CanUserSort="True"
-                                                Binding="{Binding FirstName}" />
-
-                            <DataGridTextColumn Header="Last name"
-                                                Width="180*"
-                                                MinWidth="180"
-                                                IsReadOnly="True"
-                                                CanUserSort="True"
-                                                Binding="{Binding LastName}" />
-
-                            <DataGridTextColumn Header="Phone"
-                                                Width="100*"
-                                                MinWidth="100"
-                                                IsReadOnly="True"
-                                                CanUserSort="True"
-                                                Binding="{Binding PhoneNumber}" />
-
-                            <DataGridTextColumn Header="Passport"
-                                                Width="100*"
-                                                MinWidth="100"
-                                                IsReadOnly="True"
-                                                CanUserSort="True"
-                                                Binding="{Binding Passport}" />
-                        </DataGrid.Columns>
-                    </DataGrid>
-                        
+                            
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="ID" Binding="{Binding Path=Id}"
+                                                    MinWidth="60" Width="60*"
+                                                    IsReadOnly="True" CanUserSort="False" />
+                                <DataGridTextColumn Header="ФИО" 
+                                                    Binding="{Binding Converter={StaticResource ClientToFio}, Mode=OneWay}"
+                                                    MinWidth="180" Width="180*"
+                                                    IsReadOnly="True" CanUserSort="False" />
+                                <DataGridTextColumn Header="Телефон" Binding="{Binding PhoneNumber, Mode=OneWay}"
+                                                    MinWidth="100" Width="100*"
+                                                    IsReadOnly="True" CanUserSort="False" />
+                                <DataGridTextColumn Header="Паспорт" Binding="{Binding PassportData, Mode=OneWay}"
+                                                    MinWidth="100" Width="100*"
+                                                    IsReadOnly="True" CanUserSort="False" />
+                            </DataGrid.Columns>
+                        </DataGrid>
                     </Border>
                     
             <Grid Grid.Column="2" Visibility="Visible">
