@@ -7,8 +7,8 @@ namespace Homework_13.Models.Clients;
 
 internal class Client : Person
 {
-    private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
-
+    private static readonly Logger _logger = LogManager.GetCurrentClassLogger();
+    
     private readonly int _id;
     /// <summary>
     /// Идентификатор
@@ -41,6 +41,7 @@ internal class Client : Person
     public Client(int id, PhoneNumber phoneNumber, PassportData passportData, string firstName, string lastName, string middleName = "")
         : base(firstName, lastName, middleName)
     {
+        _logger.Debug($"Вызов конструктора {GetType().Name} с параметрами");
         _id = id;
         PhoneNumber = phoneNumber;
         PassportData = passportData;
